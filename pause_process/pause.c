@@ -4,13 +4,18 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
+int pid;
+char cont_p;
 
 int main() {
   while (1) {
-    // List processes
-    pid_t pid = 12345; /* The PID of the remote process */
 
-    // Attach to the remote process
+    printf("Process Injection PID: ");
+
+    scanf("%d", &pid);
+    // List processes
+
+    // Attach to remote process
     if (ptrace(PTRACE_ATTACH, pid, NULL, NULL) == -1) {
         perror("ptrace attach failed");
         return 1;
@@ -18,11 +23,11 @@ int main() {
 
     printf("Remote process paused.\n");
 
-    char cont_p;
-    printf("unpause process?");
-    scanf("%c", &cont_p);
+    // Pause process
+    printf("unpause process? ");
+    scanf(" %c", &cont_p);
     if (cont_p == 'y') {
-        printf("Continuing Process.");
+        printf("Continuing Process.\n");
         if (ptrace(PTRACE_CONT, pid, NULL, NULL) == -1) {
             perror("Failed to continue the process");
             return 1;}
@@ -30,6 +35,9 @@ int main() {
     else {
         printf("No?");}
 
+    // Kill Process
+    // Create a remote thread then open a file
+    //
 
   }
     return 0;
