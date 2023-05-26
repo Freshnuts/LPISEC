@@ -35,10 +35,6 @@ int main() {
     else {
         printf("No?");}
 
-    // Kill Process
-    // Create a remote thread then open a file
-    //
-
   }
     return 0;
 }
