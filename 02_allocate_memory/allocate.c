@@ -25,6 +25,7 @@ void manipulate_remote_memory(pid_t pid) {
     remote[0].iov_len = sizeof(buffer);
 
 
+
     // Perform process_vm_readv() to write the data to remote process memory
     ssize_t n = process_vm_writev(pid, local, 1, remote, 1, 0);
     if (n == -1) {
@@ -45,7 +46,7 @@ void manipulate_remote_memory(pid_t pid) {
 }
 
 int main() {
-    pid_t pid = 48338; // Replace <target_pid> with the PID of the target process
+    pid_t pid = 5556;
     manipulate_remote_memory(pid);
     return 0;
 }
